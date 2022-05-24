@@ -23,11 +23,7 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class Utils {
 
-    public static String getDefaultAlgo(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String prefAlgo = prefs.getString("prefAlgo", "2");
-        return prefAlgo;
-    }
+
 
 
     public static boolean isLocationEnabled(Context context) {

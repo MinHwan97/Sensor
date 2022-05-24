@@ -36,7 +36,7 @@ public class LocateMeActivity extends AppCompatActivity {
 
     private WifiData mWifiData;
     private Algorithms algorithms = new Algorithms();
-    private String projectId, defaultAlgo;
+    private String projectId;
     private IndoorProject project;
     private MainActivityReceiver mReceiver = new MainActivityReceiver();
     private Intent wifiServiceIntent;
@@ -65,7 +65,7 @@ public class LocateMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_locate_me);
         initUI();
 
-        defaultAlgo = Utils.getDefaultAlgo(this);
+
         projectId = getIntent().getStringExtra("projectId");
         if (projectId == null) {
             Toast.makeText(getApplicationContext(), "Project Not Found", Toast.LENGTH_LONG).show();
@@ -99,7 +99,7 @@ public class LocateMeActivity extends AppCompatActivity {
             mWifiData = (WifiData) intent.getParcelableExtra(AppContants.WIFI_DATA);
 
             if (mWifiData != null) {
-                LocationWithNearbyPlaces loc = Algorithms.processingAlgorithms(mWifiData.getNetworks(), project, Integer.parseInt(defaultAlgo));
+                LocationWithNearbyPlaces loc = Algorithms.processingAlgorithms(mWifiData.getNetworks(), project, 2);
                 Log.v("LocateMeActivity", "loc:" + loc);
                 if (loc == null) {
                     tvLocation.setText("Location: NA\nNote:Please switch on your wifi and location services with permission provided to App");

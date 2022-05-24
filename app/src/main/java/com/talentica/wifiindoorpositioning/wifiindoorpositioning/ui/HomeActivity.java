@@ -1,5 +1,5 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.ui;
-
+//시작화면, 전반적인 기능 포함됨
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -70,16 +70,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.settings:
-                Intent intent = new Intent(this, UnifiedNavigationActivity.class);
-                startActivity(intent);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void initUI() {
         setContentView(R.layout.activity_home);
