@@ -280,7 +280,7 @@ public class Algorithms {
 			if (LocDistance_Results_List.get(i).getDistance() != 0.0) {
 				LocationWeight = 1 / LocDistance_Results_List.get(i).getDistance();
 			} else {
-				LocationWeight = 100;
+				LocationWeight = 300;
 			}
 			LocationArray = LocDistance_Results_List.get(i).getLocation().split(" ");
 
