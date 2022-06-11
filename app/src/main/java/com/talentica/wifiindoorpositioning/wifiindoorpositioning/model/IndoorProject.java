@@ -7,9 +7,6 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-/**
- * Created by suyashg on 25/08/17.
- */
 
 public class IndoorProject extends RealmObject {
 

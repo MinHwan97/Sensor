@@ -11,9 +11,6 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.IndoorPro
 
 import io.realm.RealmResults;
 
-/**
- * Created by suyashg on 25/08/17.
- */
 
 public class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapter.ViewHolder> {
     private RealmResults<IndoorProject> mDataset;

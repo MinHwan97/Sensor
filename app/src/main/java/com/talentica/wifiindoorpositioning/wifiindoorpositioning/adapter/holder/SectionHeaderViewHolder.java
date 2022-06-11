@@ -6,9 +6,7 @@ import android.widget.TextView;
 
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 
-/**
- * Created by suyashg on 26/08/17.
- */
+
 
 public class SectionHeaderViewHolder extends RecyclerView.ViewHolder {
     final TextView tvTitle;

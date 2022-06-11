@@ -55,6 +55,8 @@
             android:name=".ui.LocateMeActivity"
             android:label="@string/locate_me" />
 
+        <activity android:name=".ui.SelectUser"
+            android:label="Settings" />
 
         <service android:name=".core.WifiService" />
 

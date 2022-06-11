@@ -13,9 +13,6 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.LocDistan
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by suyashg on 27/08/17.
- */
 
 public class NearbyReadingsAdapter extends RecyclerView.Adapter<NearbyReadingsAdapter.ViewHolder> {
     private ArrayList<LocDistance> readings = new ArrayList<>();

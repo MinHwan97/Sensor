@@ -1,5 +1,7 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.ui;
 
+import static com.talentica.wifiindoorpositioning.wifiindoorpositioning.ui.HomeActivity.*;
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,14 +33,12 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 import io.realm.Realm;
 
-/**
- * Created by suyashg on 25/08/17.
- */
+
 
 public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener, RecyclerItemClickListener.OnItemClickListener {
 
     private RecyclerView pointRV;
-    private Button btnAddAp, btnAddRp, btnLocateMe;
+    private Button btnAddAp, btnAddRp, locatebtn;
     private IndoorProject project;
     private SectionedRecyclerViewAdapter sectionAdapter = new SectionedRecyclerViewAdapter();
     private ReferencePointSection rpSec;
@@ -47,17 +47,19 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     private String projectId;
     private int PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION = 198;
     private int PERM_REQ_CODE_LM_ACCESS_COARSE_LOCATION = 197;
-
+    private int user;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
 
         projectId = getIntent().getStringExtra("id");
+        user = getIntent().getIntExtra("user", 2);
         if (projectId == null) {
             Toast.makeText(getApplicationContext(), "Project Not Found", Toast.LENGTH_LONG).show();
             this.finish();
         }
+
         Log.i("ProjectDetailActivity", "id>"+projectId);
 
         Realm realm = Realm.getDefaultInstance();
@@ -75,9 +77,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
         btnAddRp = findViewById(R.id.btn_add_rp);
         btnAddRp.setOnClickListener(this);
-
-        btnLocateMe = findViewById(R.id.btn_locate_me);
-        btnLocateMe.setOnClickListener(this);
+        locatebtn = findViewById(R.id.btn_locate_me);
+        locatebtn.setOnClickListener(this);
         setCounts();
 
         SectionParameters sp = new SectionParameters.Builder(R.layout.item_point_details)
@@ -94,6 +95,13 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         pointRV.setLayoutManager(layoutManager);
         pointRV.setAdapter(sectionAdapter);
         pointRV.addOnItemTouchListener(new RecyclerItemClickListener(this,pointRV, this));
+        user = getIntent().getIntExtra("user",2);
+        if (user == 2){
+            btnAddAp.setVisibility(View.GONE);
+            btnAddRp.setVisibility(View.GONE);
+            // 화면에서 아예 사라지게 한다.
+        }
+
     }
 
     private void setCounts() {
@@ -122,16 +130,27 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if (view.getId() == btnAddAp.getId()) {
-            startAddAPActivity("");
-        } else if (view.getId() == btnAddRp.getId()) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION);
-                //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
-            } else{
-                startAddRPActivity(null);
+            if (user == 2){
+                Toast.makeText(this, "The guest does not have access.", Toast.LENGTH_SHORT).show();
             }
-        } else if (view.getId() == btnLocateMe.getId()) {
+            else {
+                startAddAPActivity("");
+            }
+        } else if (view.getId() == btnAddRp.getId()) {
+            if (user == 2){
+                Toast.makeText(this, "The guest does not have access.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                            PERM_REQ_CODE_RP_ACCESS_COARSE_LOCATION);
+                    //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
+                } else {
+                    startAddRPActivity(null);
+                }
+            }
+        } else if (view.getId() == locatebtn.getId()) {
+            //location
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                         PERM_REQ_CODE_LM_ACCESS_COARSE_LOCATION);
@@ -149,6 +168,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         } else if(requestCode == PERM_REQ_CODE_LM_ACCESS_COARSE_LOCATION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startAddLocateMeActivity();
         }
+
+
     }
 
     private void startAddAPActivity(String apId) {
@@ -156,6 +177,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         intent.putExtra("projectId", projectId);
         intent.putExtra("apID", apId);
         startActivity(intent);
+
+
+
+
     }
 
     private void startAddRPActivity(String rpId) {
@@ -165,7 +190,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-    private void startAddLocateMeActivity() {
+    public void startAddLocateMeActivity() {
         Intent intent = new Intent(this, LocateMeActivity.class);
         intent.putExtra("projectId", projectId);
         startActivity(intent);
@@ -250,3 +275,32 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

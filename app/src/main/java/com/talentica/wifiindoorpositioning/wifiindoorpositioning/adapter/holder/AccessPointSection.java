@@ -11,9 +11,7 @@ import java.util.List;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
-/**
- * Created by suyashg on 26/08/17.
- */
+
 
 public class AccessPointSection extends StatelessSection {
     private List<AccessPoint> accessPoints = new ArrayList<>();

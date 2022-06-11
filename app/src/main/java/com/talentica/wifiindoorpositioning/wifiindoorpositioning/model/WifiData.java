@@ -29,13 +29,7 @@ public class WifiData implements Parcelable {
 		}
 	};
 
-	/**
-	 * Stores the last WiFi scan performed by manager & creating an object
-	 * for each network detected.
-	 * 
-	 * @param results
-	 *            list of networks detected
-	 */
+
 	public void addNetworks(List<ScanResult> results) {
 		mNetworks.clear();
 		for (ScanResult result : results) {
@@ -54,11 +48,7 @@ public class WifiData implements Parcelable {
 		dest.writeTypedList(mNetworks);
 	}
 
-	/**
-	 * @return Returns a string containing a concise, human-readable description
-	 *         of this object.
-	 */
-	@Override
+
 	public String toString() {
 		if (mNetworks == null || mNetworks.size() == 0)
 			return "Empty data";
@@ -66,9 +56,7 @@ public class WifiData implements Parcelable {
 			return mNetworks.size() + " networks data";
 	}
 
-	/**
-	 * @return Returns the list of scanned networks
-	 */
+
 	public List<WifiDataNetwork> getNetworks() {
 		return mNetworks;
 	}

@@ -1,5 +1,5 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.ui;
-//시작화면, 전반적인 기능 포함됨
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,6 +35,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton fab;
 
+    //유저
+    private int user = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // specify an adapter
         mAdapter = new ProjectsListAdapter(projects);
         mRecyclerView.setAdapter(mAdapter);
+
+        if(user==0) {
+            Intent intent2 = new Intent(this, SelectUser.class);
+            startActivityForResult(intent2, 101);
+        }
     }
 
     @Override
@@ -110,11 +118,23 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, ProjectDetailActivity.class);
         IndoorProject project = projects.get(position);
         intent.putExtra("id", project.getId());
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 
     @Override
     public void onLongClick(View view, int position) {
 
+    }
+    //유저
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 101){
+            if (data != null){
+                user = data.getIntExtra("user", 0);
+            }
+        }
     }
 }

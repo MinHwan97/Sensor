@@ -24,9 +24,6 @@ import java.util.UUID;
 
 import io.realm.Realm;
 
-/**
- * Created by suyashg on 26/08/17.
- */
 
 public class AddOrEditAccessPointActivity extends AppCompatActivity implements View.OnClickListener {
 

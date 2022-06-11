@@ -12,9 +12,7 @@ import java.util.List;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
-/**
- * Created by suyashg on 26/08/17.
- */
+
 
 public class ReferencePointSection extends StatelessSection {
     private List<ReferencePoint> referencePoints = new ArrayList<>();

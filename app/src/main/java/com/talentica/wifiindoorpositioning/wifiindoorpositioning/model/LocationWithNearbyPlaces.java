@@ -2,9 +2,7 @@ package com.talentica.wifiindoorpositioning.wifiindoorpositioning.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by suyashg on 21/09/17.
- */
+
 
 public class LocationWithNearbyPlaces {
 

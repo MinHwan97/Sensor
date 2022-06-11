@@ -12,9 +12,6 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.AccessPoi
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by suyashg on 27/08/17.
- */
 
 public class ReferenceReadingsAdapter extends RecyclerView.Adapter<ReferenceReadingsAdapter.ViewHolder> {
     private List<AccessPoint> readings = new ArrayList<>();

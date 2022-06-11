@@ -12,9 +12,6 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by suyashg on 27/08/17.
- */
 
 public class WifiResultsAdapter extends RecyclerView.Adapter<WifiResultsAdapter.ViewHolder> {
     private List<ScanResult> results = new ArrayList<>();

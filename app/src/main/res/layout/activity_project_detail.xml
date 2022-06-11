@@ -61,6 +61,8 @@
         android:id="@+id/btn_locate_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Locate Me" />
+        android:background="@color/colorAccent"
+        android:text="@string/locate_me"
+        android:textColor="#F3F3F3" />
 
 </LinearLayout>

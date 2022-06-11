@@ -16,9 +16,6 @@ import java.util.UUID;
 
 import io.realm.Realm;
 
-/**
- * Created by suyashg on 25/08/17.
- */
 
 public class NewProjectActivity extends AppCompatActivity implements View.OnClickListener {
 

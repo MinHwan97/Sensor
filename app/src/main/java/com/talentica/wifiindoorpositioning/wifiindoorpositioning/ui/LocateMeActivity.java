@@ -28,10 +28,6 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils.Utils;
 
 import io.realm.Realm;
 
-/**
- * Created by suyashg on 10/09/17.
- */
-
 public class LocateMeActivity extends AppCompatActivity {
 
     private WifiData mWifiData;

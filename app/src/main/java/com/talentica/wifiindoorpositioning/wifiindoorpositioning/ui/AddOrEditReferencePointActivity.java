@@ -38,9 +38,6 @@ import java.util.UUID;
 import io.realm.Realm;
 import io.realm.RealmList;
 
-/**
- * Created by suyashg on 07/09/17.
- */
 
 public class AddOrEditReferencePointActivity extends AppCompatActivity implements View.OnClickListener {
 
